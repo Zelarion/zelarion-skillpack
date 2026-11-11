@@ -1,9 +1,9 @@
 ---
 name: saas
-description: Turn a single-business app into a multi-tenant SaaS, or build one from scratch, using the Drezivo approach - Clerk proves identity, the API alone decides membership, role, scope, modules and subscription access; one workspace per business owner; owners invite staff by email/Gmail; staff see only what their role and scope allow; subscription access (full / read_only / locked) is derived at request time and enforced by one central gate; payments are manual proof reviewed by an operator; support uses time-bound grants, never impersonation; Postgres RLS backs the tenant filter. Use when the user says /saas, "make this SaaS", "multi-tenant", "workspace per owner", "subscription / paywall", "invite staff by email", "Clerk login", "tenant isolation", "partner / promo code pricing", or wants an app sold to more than one business.
+description: Turn a single-business app into a multi-tenant SaaS, or build one from scratch, using the Clerk-plus-central-gate approach - Clerk proves identity, the API alone decides membership, role, scope, modules and subscription access; one workspace per business owner; owners invite staff by email/Gmail; staff see only what their role and scope allow; subscription access (full / read_only / locked) is derived at request time and enforced by one central gate; payments are manual proof reviewed by an operator; support uses time-bound grants, never impersonation; Postgres RLS backs the tenant filter. Use when the user says /saas, "make this SaaS", "multi-tenant", "workspace per owner", "subscription / paywall", "invite staff by email", "Clerk login", "tenant isolation", "partner / promo code pricing", or wants an app sold to more than one business.
 ---
 
-# /saas - multi-tenant SaaS foundation (Drezivo approach)
+# /saas - multi-tenant SaaS foundation (Clerk + central gate)
 
 One sentence governs everything:
 
@@ -14,8 +14,8 @@ A Clerk user id, org id, session claim, URL slug or header is never authority by
 Each one is input that the server resolves against its own rows, and anything missing,
 ambiguous, stale or unknown is rejected (fail closed).
 
-Reference implementation: the Drezivo product pack ("Drezivo - Product and Architecture Pack"; its
-source is not part of this bundle). The code shapes are summarised in
+Reference implementation: a production greenfield API (its source is not part of this
+bundle). The code shapes are summarised in
 [references/patterns.md](references/patterns.md); read the real files in your own project when a
 detail matters.
 
@@ -30,7 +30,7 @@ many tables, and which have no FK path to a tenant root? how does auth work toda
 
 | Path | When | Shape |
 |---|---|---|
-| **Greenfield** (Drezivo) | New product, no users yet | `tenant` = Clerk Organization (`clerk_org_id` unique), `membership(tenant_id, clerk_user_id, role, status, authz_version)`, `branch_membership(permission_codes)`. Onboarding creates the org + tenant + owner membership in one idempotent flow. |
+| **Greenfield** | New product, no users yet | `tenant` = Clerk Organization (`clerk_org_id` unique), `membership(tenant_id, clerk_user_id, role, status, authz_version)`, `branch_membership(permission_codes)`. Onboarding creates the org + tenant + owner membership in one idempotent flow. |
 | **Retrofit** | Live single-business app with its own users/RBAC | Keep the local `user` row as the authority. Add Clerk as a second **door**: `user.clerk_user_id` (partial unique), linked on first sign-in by verified email to a row an owner already created. Password login stays as the IT break-glass. Add `tenant` + `tenant_id` + RLS later as a phased migration. |
 
 Never do both at once. A retrofit that also swaps the identity model and adds tenancy in

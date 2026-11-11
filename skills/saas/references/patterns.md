@@ -1,9 +1,9 @@
 # /saas code patterns
 
-Condensed from the Drezivo API (greenfield) and a retrofit adopter's backend. Open the
+Condensed from a greenfield API and a retrofit adopter's backend. Open the
 source file in your own project before copying; these are shapes, not drop-in code.
 
-## 1. Who vs what (Drezivo `middleware/auth.ts`, `middleware/tenant-context.ts`)
+## 1. Who vs what (greenfield `middleware/auth.ts`, `middleware/tenant-context.ts`)
 
 ```ts
 // auth.ts: "who". Mounted globally; does not reject (public routes exist).
@@ -17,7 +17,7 @@ export function requireStaffAuth(req, _res, next) {
 
 // tenant-context.ts: "what/where". Fails closed at every step.
 if (!clerkPrincipal?.clerkOrgId) throw new ForbiddenError('An active organization is required.');
-const rawBranchId = req.header('X-Drezivo-Branch-Id')?.trim();
+const rawBranchId = req.header('X-Branch-Id')?.trim();
 if (rawBranchId && !isUuid(rawBranchId)) throw new ValidationError('Branch selector is invalid.');
 const result = await resolveActorContext({ principalId, clerkOrgId, branchId });
 // kind: not_found -> 404 | forbidden -> 403 | state_conflict -> 409
@@ -46,7 +46,7 @@ audit('auth.clerk_linked')
 Schema: `clerk_user_id text` + partial unique index `WHERE clerk_user_id IS NOT NULL` + index
 on `lower(email)`. `toPublicUser` strips `clerk_user_id`, exposes `clerk_linked: boolean`.
 
-## 3. Derived access (Drezivo `modules/billing/access.ts`)
+## 3. Derived access (greenfield `modules/billing/access.ts`)
 
 ```ts
 export function accessOf(sub, now): SubscriptionAccess {
@@ -61,7 +61,7 @@ export function accessOf(sub, now): SubscriptionAccess {
 }
 ```
 
-## 4. Central gate (Drezivo `modules/billing/access-gate.ts`)
+## 4. Central gate (greenfield `modules/billing/access-gate.ts`)
 
 ```ts
 const ALWAYS_ALLOWED = [
@@ -83,7 +83,7 @@ export function assertSubscriptionAccess(req, access) {
 }
 ```
 
-## 5. Tenant transaction (Drezivo `db/client.ts`)
+## 5. Tenant transaction (greenfield `db/client.ts`)
 
 ```ts
 export async function withTenantTransaction(tenantId, principalId, work) {
@@ -98,7 +98,7 @@ Variants: `withSystemTenantTransaction` (`app.actor_kind='system'`), `withGlobal
 (`app.tenant_id=''` for global tables), resolution transactions that set the tenant only after
 it is found. Never a session-level `SET`.
 
-## 6. RLS policy loop (Drezivo `db/migrations/0008_rls_policies.sql`)
+## 6. RLS policy loop (greenfield `db/migrations/0008_rls_policies.sql`)
 
 ```sql
 DO $$ DECLARE t text; BEGIN
@@ -113,7 +113,7 @@ DO $$ DECLARE t text; BEGIN
 -- financial postings: REVOKE UPDATE, DELETE from the runtime role (immutable at the DB)
 ```
 
-## 7. Clerk webhook inbox (Drezivo `modules/webhooks/*`)
+## 7. Clerk webhook inbox (greenfield `modules/webhooks/*`)
 
 ```ts
 const event = await verifyWebhook(req, { signingSecret });  // '@clerk/express/webhooks', raw body
@@ -125,7 +125,7 @@ insertClerkWebhookInbox({
 // reconciliation runs in the worker, idempotent via provider ids + local unique constraints
 ```
 
-## 8. Durable job (Drezivo `clerk_organization_cleanup_job`)
+## 8. Durable job (greenfield `clerk_organization_cleanup_job`)
 
 Columns: `status`, `lease_token uuid`, `lease_until`, `attempts`, `max_attempts (8)`,
 `available_at`, `completed_at`, `safe_last_error`, unique per business key. Claim:
