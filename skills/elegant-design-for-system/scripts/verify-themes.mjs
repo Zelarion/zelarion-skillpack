@@ -1,12 +1,12 @@
 // After-fix check: same pages as the QA crawl, in a chosen theme. Usage: node verify.mjs <light|dark> '<pages json>'
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { chromium } from 'playwright-core';
-const DIR = 'E:/UserStorage/drezivo-local/qa-ws';
+const DIR = './qa-ws';
 const THEME = process.argv[2] ?? 'light'; const OUT = `${DIR}/after/${THEME}`; mkdirSync(OUT, { recursive: true });
-const axe = readFileSync('E:/UserStorage/drezivo-local/node_modules/axe-core/axe.min.js', 'utf8');
+const axe = readFileSync('./node_modules/axe-core/axe.min.js', 'utf8');
 const PAGES = JSON.parse(process.argv[3] ?? '[]');
 const ctx = await chromium.launchPersistentContext(`${DIR}/profile`, { executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, viewport: { width: 1440, height: 900 } });
-await ctx.addInitScript((t) => { try { localStorage.setItem('drezivo-theme', t); } catch {} }, THEME);
+await ctx.addInitScript((t) => { try { localStorage.setItem('app-theme', t); } catch {} }, THEME);
 const p = ctx.pages()[0] ?? await ctx.newPage();
 let errs = [];
 p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text().replace(/\s+/g, ' ').slice(0, 200)); });

@@ -563,7 +563,7 @@ html.at-motion :is([data-at-reveal]:not([data-at-bound]) [data-at-line], [data-a
 
 /* Decorative wordmark: drawn from CSS so it is not text on the page (and not read or audited as text). */
 .at-watermark::before {
-  content: 'Drezivo';
+  content: 'Brand';
   font-family: var(--font-atelier-display);
   font-size: var(--text-at-price);
   line-height: 0.8;

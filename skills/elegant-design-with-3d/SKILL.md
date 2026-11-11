@@ -1,11 +1,12 @@
 ---
 name: elegant-design-with-3d
-description: Build a premium, editorial marketing or landing site in the "atelier" style first shipped on the Drezivo landing page. One live WebGL hero scene (three.js, scroll-driven), Lenis smooth scroll + GSAP ScrollTrigger reveals, a first-visit preloader with a real readiness counter, a mosaic page transition with a generated glitter ground, a Didone + geometric-sans type pair on a fluid scale, hand-drawn SVG art instead of stock photos, coded product mockups that load like the real app, bento grids, marquee, before/after storytelling, light paper and dark night sections. Use when the user asks for a landing page, marketing site, hero, "make it elegant / premium / luxury / editorial", "replicate the landing page", preloader, page transitions, scroll animation, or 3D on a public site. For dashboards and internal apps use elegant-design-for-system instead.
+description: Build a premium, editorial marketing or landing site in the "atelier" style first shipped on a production landing page. One live WebGL hero scene (three.js, scroll-driven), Lenis smooth scroll + GSAP ScrollTrigger reveals, a first-visit preloader with a real readiness counter, a mosaic page transition with a generated glitter ground, a Didone + geometric-sans type pair on a fluid scale, hand-drawn SVG art instead of stock photos, coded product mockups that load like the real app, bento grids, marquee, before/after storytelling, light paper and dark night sections. Use when the user asks for a landing page, marketing site, hero, "make it elegant / premium / luxury / editorial", "replicate the landing page", preloader, page transitions, scroll animation, or 3D on a public site. For dashboards and internal apps use elegant-design-for-system instead.
 ---
 
 # Elegant design with 3D (atelier landing system)
+> Sample code and copy use "Brand" and "yourbrand.example" as placeholders; swap in your own product name, mark and domain.
 
-The reference implementation is the Drezivo landing page. Its source is copied into
+The reference implementation is a production landing page. Its source is copied into
 `references/` next to this file so every number below can be checked. Replicate the system and
 the discipline, then change the subject matter (the 3D object, the art, the copy) to fit the new
 brand. Never copy another company's brand assets.

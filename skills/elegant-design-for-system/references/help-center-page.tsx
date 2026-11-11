@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { PageHero } from "@/components/shell/page-hero";
 
-const CONTACT_EMAIL = process.env["NEXT_PUBLIC_CONTACT_EMAIL"] || "hello@drezivo.shop";
+const CONTACT_EMAIL = process.env["NEXT_PUBLIC_CONTACT_EMAIL"] || "hello@example.com";
 
 /** Public FAQ on the marketing site; absent when the storefront origin is not configured. */
 function faqUrl(): string | null {
@@ -212,7 +212,7 @@ export function HelpCenterPage() {
           <div>
             <p className="dashboard-eyebrow">Still need help?</p>
             <h2 id="support-heading" className="mt-1 font-display text-2xl font-medium text-dashboard-navy">
-              Talk to the Drezivo team
+              Talk to the Brand team
             </h2>
             <p className="mt-1.5 max-w-xl text-sm text-dashboard-muted">
               Tell us your business name and what you were trying to do. Screenshots help.

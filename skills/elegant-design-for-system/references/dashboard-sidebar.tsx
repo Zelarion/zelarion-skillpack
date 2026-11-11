@@ -24,10 +24,10 @@ const WORKSPACE_LINKS = [
   { href: "/storefront", label: "Storefront", icon: Store },
 ] as const;
 
-function DrezivoMark() {
+function BrandMark() {
   return (
     <Image
-      src="/brand/drezivo-mark.png"
+      src="/brand/mark.png"
       alt=""
       aria-hidden="true"
       width={497}
@@ -128,11 +128,11 @@ export function DashboardSidebar({ identity }: { identity: DashboardIdentity }) 
     <Sidebar aria-label="Primary navigation">
       <div className="flex min-h-0 flex-1 flex-col">
         <div className={collapsed ? "flex h-16 items-center justify-center" : "flex h-16 items-center px-5"}>
-          <Link href="/" aria-label="Drezivo dashboard" className="flex items-center gap-2.5">
-            <DrezivoMark />
+          <Link href="/" aria-label="Brand dashboard" className="flex items-center gap-2.5">
+            <BrandMark />
             {!collapsed && (
               <span className="font-display text-[1.625rem] font-medium leading-none tracking-[-0.01em] text-dashboard-navy">
-                Drezivo
+                Brand
               </span>
             )}
           </Link>

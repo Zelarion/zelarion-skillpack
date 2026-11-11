@@ -7,7 +7,7 @@ const STEPS = [
   },
   {
     title: 'Share your storefront link',
-    body: 'Post drezivo.shop/s/your-shop on Facebook, Instagram, and TikTok. Renters browse, pick dates, and book without making an account.',
+    body: 'Post yourbrand.example/s/your-shop on Facebook, Instagram, and TikTok. Renters browse, pick dates, and book without making an account.',
   },
   {
     title: 'Run the day from one screen',

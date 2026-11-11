@@ -30,7 +30,7 @@ import { createGownParticles } from './gown-particles';
 import { SILK_FRAGMENT, SILK_VERTEX } from './silk-shader';
 
 /**
- * The hero's single WebGL scene: a live silk backdrop and Drezivo's mark rebuilt in 3D — satin
+ * The hero's single WebGL scene: a live silk backdrop and the brand mark rebuilt in 3D — satin
  * ribbons that float apart (a shop's scattered tools) and wrap a dress form into a gown as the
  * visitor scrolls (everything in one place). Stylized, not a reconstruction of any real garment.
  *

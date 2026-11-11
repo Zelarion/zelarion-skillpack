@@ -134,7 +134,7 @@ export function AtelierHero({ signUpUrl, priceLabel, trialDays }: { signUpUrl: s
               ))}
             </h1>
             <p data-hero-fade className="mt-5 max-w-[34rem] sm:mt-7 text-at-lead text-atelier-mist">
-              Drezivo runs the busy side of a clothing rental shop: availability, reservations, deposits, payments, and returns.
+              Brand runs the busy side of a clothing rental shop: availability, reservations, deposits, payments, and returns.
               Your evenings stop belonging to Messenger.
             </p>
             <div data-hero-fade className="at-cta-row mt-7 sm:mt-9">

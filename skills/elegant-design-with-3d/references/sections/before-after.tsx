@@ -36,7 +36,7 @@ const ROWS: readonly Row[] = [
     core: true,
     pain: '“Available pa po?” at 11 PM',
     title: 'Renters answer their own question.',
-    body: 'Every inquiry used to mean flipping through a notebook or scrolling a group chat. Your Drezivo storefront shows live availability, so renters pick open dates and send a booking while you sleep.',
+    body: 'Every inquiry used to mean flipping through a notebook or scrolling a group chat. Your Brand storefront shows live availability, so renters pick open dates and send a booking while you sleep.',
     fix: 'Storefront with live availability',
     before: <BeforeInquiries />,
     after: <AfterStorefront />,
@@ -78,7 +78,7 @@ const ROWS: readonly Row[] = [
 
 /**
  * Why shops switch: five real frictions of running a clothing rental by hand, each paired with the
- * same moment in Drezivo. On scroll the "before" fades back and the "after" screen assembles.
+ * same moment in Brand. On scroll the "before" fades back and the "after" screen assembles.
  */
 export function BeforeAfter() {
   const root = useRef<HTMLElement>(null);
@@ -154,11 +154,11 @@ export function BeforeAfter() {
             <h2 className="mt-6 font-[family-name:var(--font-atelier-display)] text-at-display font-normal">
               <span className="block overflow-hidden"><span data-at-line className="block">A rental shop{' '}</span></span>
               <span className="block overflow-hidden"><span data-at-line className="block">runs on memory.{' '}</span></span>
-              <span className="block overflow-hidden"><span data-at-line className="block italic">Drezivo remembers.{' '}</span></span>
+              <span className="block overflow-hidden"><span data-at-line className="block italic">Brand remembers.{' '}</span></span>
             </h2>
           </div>
           <p data-at-reveal="up" className="max-w-[32rem] text-at-lead text-atelier-muted lg:justify-self-end">
-            These are the hassles we hear from gown, barong, and costume shops every week. Each one has a place in Drezivo, so it stops
+            These are the hassles we hear from gown, barong, and costume shops every week. Each one has a place in Brand, so it stops
             living in someone&apos;s head or phone.
           </p>
         </div>
@@ -183,14 +183,14 @@ export function BeforeAfter() {
                 </div>
               </div>
               {/* Two equal stages: phones swipe between them, larger screens show them side by side. */}
-              <div role="group" aria-label={`${row.fix}: before and with Drezivo`} tabIndex={0} className="at-snap-pair relative sm:grid-cols-2 sm:gap-5 lg:gap-8">
+              <div role="group" aria-label={`${row.fix}: before and with Brand`} tabIndex={0} className="at-snap-pair relative sm:grid-cols-2 sm:gap-5 lg:gap-8">
                 <div data-ba-before className="at-stage at-stage-before">
                   <p className="at-eyebrow text-atelier-muted">Before<span aria-hidden="true" className="sm:hidden"> · swipe →</span></p>
                   <div className="at-stage-body">{row.before}</div>
                 </div>
                 <span data-ba-line aria-hidden="true" className="at-ba-line hidden sm:grid">→</span>
                 <div data-ba-after className="at-stage at-stage-after">
-                  <p className="at-eyebrow text-atelier-champagne">With Drezivo</p>
+                  <p className="at-eyebrow text-atelier-champagne">With Brand</p>
                   <div className="at-stage-body">{row.after}</div>
                 </div>
               </div>

@@ -7,7 +7,7 @@ import { motionAllowed } from '../motion/motion-tokens';
 const SHOPS = ['Bridal gowns', 'Debut gowns', 'Filipiniana', 'Barong Tagalog', 'Ternos', 'Evening dresses', 'Suits and tuxedos', 'Costumes', 'Prom and graduation', 'Cosplay'];
 
 /**
- * The kinds of shops Drezivo is built for, drifting past. Speed is set from the track's width so it
+ * The kinds of shops Brand is built for, drifting past. Speed is set from the track's width so it
  * stays constant whatever the screen; linear easing, because any other curve visibly lurches.
  */
 export function ShopMarquee() {
@@ -26,7 +26,7 @@ export function ShopMarquee() {
 
   const items = [...SHOPS, ...SHOPS];
   return (
-    <section aria-label="Shops Drezivo is built for" data-header="dark" className="overflow-hidden border-y border-atelier-night-line bg-atelier-night py-7 text-atelier-paper">
+    <section aria-label="Shops Brand is built for" data-header="dark" className="overflow-hidden border-y border-atelier-night-line bg-atelier-night py-7 text-atelier-paper">
       <div ref={track} className="flex w-max items-center">
         {items.map((shop, index) => (
           <span key={`${shop}-${index}`} aria-hidden={index >= SHOPS.length} className="flex items-center whitespace-nowrap font-[family-name:var(--font-atelier-display)] text-at-subhead italic">

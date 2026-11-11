@@ -1,6 +1,6 @@
 /**
  * The "before" artifacts (how rental shops run today) and the "after" screens (the same moment in
- * Drezivo). Screens are coded mockups in the business app's own charcoal-and-gold theme with
+ * Brand). Screens are coded mockups in the business app's own charcoal-and-gold theme with
  * illustrative sample data, so they stay sharp at any size and change when the product does.
  * Each "after" has a skeleton layer that gives way to its data as the row scrolls into place.
  */
@@ -61,7 +61,7 @@ export function AfterStorefront() {
     ['18', 'open'],
   ] as const;
   return (
-    <AppScreen title="Your storefront" meta="drezivo.shop/s/your-shop">
+    <AppScreen title="Your storefront" meta="yourbrand.example/s/your-shop">
       <p className="at-m-md font-medium text-[var(--app-ink)]">Red Mermaid Gown · M</p>
       <p className="mt-1 at-m-xs text-[var(--app-muted)]">Renters check dates themselves, any time of day.</p>
       <div className="mt-3 grid grid-cols-7 gap-1.5">

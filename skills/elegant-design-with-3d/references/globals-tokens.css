@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
- * Design tokens for the Drezivo public surface (marketing site + tenant
+ * Design tokens for the Brand public surface (marketing site + tenant
  * storefronts). Per .claude/rules/frontend.md: never hardcode raw color/
  * spacing values in components — reference these tokens instead. Each tenant
  * storefront sets its own palette (chosen in the CMS) through the --sf-*

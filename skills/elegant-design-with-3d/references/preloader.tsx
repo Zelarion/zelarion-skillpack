@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 
 import { EASE_DRAMA, EASE_REVEAL } from '../motion/motion-tokens';
 
-const WORD = 'Drezivo';
+const WORD = 'Brand';
 /** Long enough for the mark to draw; short enough to stay a welcome, not a wait (it delays LCP). */
 const MIN_SHOW_MS = 1200;
 /** The page reveals by then even if the 3D scene is still building; the scene fades in when ready. */
@@ -93,9 +93,9 @@ export function Preloader({ active, onDone }: { active: boolean; onDone: () => v
   }, [active, onDone]);
 
   return (
-    <div ref={root} className="at-preloader" role="status" aria-live="polite" aria-label="Loading Drezivo">
+    <div ref={root} className="at-preloader" role="status" aria-live="polite" aria-label="Loading Brand">
       <div data-preload-content className="flex flex-col items-center">
-        <Image data-mark src="/brand/drezivo-mark.png" alt="" width={497} height={600} priority className="h-28 w-auto sm:h-36" />
+        <Image data-mark src="/brand/mark.png" alt="" width={497} height={600} priority className="h-28 w-auto sm:h-36" />
         <p className="mt-6 flex overflow-hidden font-[family-name:var(--font-atelier-display)] text-at-display tracking-[0.02em]">
           {WORD.split('').map((letter, index) => (
             <span key={`${letter}-${index}`} data-word-letter className="inline-block">

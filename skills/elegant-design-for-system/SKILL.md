@@ -4,8 +4,9 @@ description: Design and build internal systems (business workspaces, admin and o
 ---
 
 # Elegant design for systems
+> Sample code and copy use "Brand" and "yourbrand.example" as placeholders; swap in your own product name, mark and domain.
 
-Reference implementation: the Drezivo business workspace (Next.js 15, Tailwind v4, Radix,
+Reference implementation: a production business workspace (Next.js 15, Tailwind v4, Radix,
 lucide). The working code is copied into `references/`; scripts in `scripts/`. A system is used
 for hours a day, so restraint beats spectacle: no WebGL, no preloader, no scroll-jacking. Keep the
 landing's type, palette, labels and curves; spend motion only on feedback.
@@ -159,7 +160,7 @@ Base `Input`, `Textarea` and `Button` read the scale, so every form inherits it.
   screens, a support card with email and the public FAQ.
 - **404 and error**: the same markup in every app of the product: brand mark, eyebrow
   "Error 404", Didone "Page not found", a short gold rule, one line, a pill primary action that
-  fits the app (Back to dashboard / Back to console / Back to Drezivo) and a ghost Go back, a
+  fits the app (Back to dashboard / Back to console / Back to site) and a ghost Go back, a
   faint giant italic "404" behind.
 
 ## 7. Charts and analytics
@@ -189,7 +190,7 @@ tiles 80ms. Under `prefers-reduced-motion` every keyframe is off and transitions
 
 ## 10. Plain-CSS codebases (no Tailwind)
 
-Same system, expressed as CSS custom properties (reference: Drezivo operator console). Keep legacy
+Same system, expressed as CSS custom properties (reference: an operator console). Keep legacy
 token names if renaming would churn the codebase, but remap their values and document the meaning
 (`--blue-dark` = filled-control colour, text on it is `--primary-ink`). Redefine the tokens under
 `:root[data-theme="dark"]`. The tab bar can be `position: fixed` there because nothing is sticky at

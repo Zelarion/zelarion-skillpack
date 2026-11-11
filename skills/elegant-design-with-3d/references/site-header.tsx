@@ -10,7 +10,7 @@ import { EASE_DRAMA, EASE_REVEAL, lockScroll, motionAllowed } from './atelier/mo
 import { SIGN_IN_URL, SIGN_UP_URL } from '@/lib/site-urls';
 
 const NAV_LINKS = [
-  { href: '/#before-after', label: 'Why Drezivo' },
+  { href: '/#before-after', label: 'Why Brand' },
   { href: '/#features', label: 'Features' },
   { href: '/#how-it-works', label: 'How it works' },
   { href: '/#pricing', label: 'Pricing' },
@@ -23,7 +23,7 @@ const CROSS = { top: 'M6 6 L18 18', bottom: 'M6 18 L18 6' };
 type Ground = 'dark' | 'light';
 
 /**
- * Header for Drezivo's own marketing pages only. It reads the ground of the section beneath it
+ * Header for the brand's own marketing pages only. It reads the ground of the section beneath it
  * (`data-header` on each section): transparent with light type over the night sections, paper
  * with a hairline over the light ones. Phones get a full-screen menu.
  */
@@ -85,9 +85,9 @@ export function SiteHeader() {
   return (
     <header className="at-header fixed inset-x-0 top-0 z-50" data-ground={dark ? 'dark' : 'light'} data-scrolled={scrolled && !open ? '' : undefined}>
       <div className="at-container flex h-[4.5rem] items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Drezivo home">
-          <Image src="/brand/drezivo-mark.png" alt="" width={497} height={600} priority className="h-9 w-auto" />
-          <span className="font-[family-name:var(--font-atelier-display)] text-at-title leading-none">Drezivo</span>
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Brand home">
+          <Image src="/brand/mark.png" alt="" width={497} height={600} priority className="h-9 w-auto" />
+          <span className="font-[family-name:var(--font-atelier-display)] text-at-title leading-none">Brand</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">

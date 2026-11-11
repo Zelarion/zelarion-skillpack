@@ -13,10 +13,10 @@ const body = Jost({ subsets: ["latin"], weight: ["400", "500", "600"], variable:
 
 export const metadata: Metadata = {
   title: {
-    default: "Drezivo",
-    template: "%s · Drezivo",
+    default: "Brand",
+    template: "%s · Brand",
   },
-  description: "Drezivo staff authentication.",
+  description: "Brand staff authentication.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

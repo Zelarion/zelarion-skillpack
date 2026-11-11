@@ -12,7 +12,7 @@ import { DARK_QUERY, THEME_STORAGE_KEY } from "@/lib/theme-boot";
 export type ThemePreference = "light" | "dark" | "system";
 export type ResolvedTheme = "light" | "dark";
 
-const THEME_CHANGE_EVENT = "drezivo:theme-change";
+const THEME_CHANGE_EVENT = "app:theme-change";
 
 function isPreference(value: unknown): value is ThemePreference {
   return value === "light" || value === "dark" || value === "system";

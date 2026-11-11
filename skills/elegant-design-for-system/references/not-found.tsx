@@ -4,8 +4,8 @@ import Link from "next/link";
 import { NotFoundBackButton } from "@/components/shell/not-found-back-button";
 
 /**
- * The Drezivo 404. The same layout and copy ship in the landing site, storefronts, and operator
- * console (web/src/app/not-found.tsx, Drezivo-Operator-Web); only the primary action differs.
+ * The Brand 404. The same layout and copy ship in the landing site, storefronts, and operator
+ * console (web/src/app/not-found.tsx, Operator-Web); only the primary action differs.
  */
 export default function NotFound() {
   return (
@@ -18,9 +18,9 @@ export default function NotFound() {
       </span>
 
       <div className="relative flex max-w-lg flex-col items-center">
-        <Link href="/" aria-label="Drezivo" className="flex items-center gap-2">
-          <Image src="/brand/drezivo-mark.png" alt="" width={497} height={600} className="h-9 w-9 object-contain" />
-          <span className="font-display text-2xl font-medium">Drezivo</span>
+        <Link href="/" aria-label="Brand" className="flex items-center gap-2">
+          <Image src="/brand/mark.png" alt="" width={497} height={600} className="h-9 w-9 object-contain" />
+          <span className="font-display text-2xl font-medium">Brand</span>
         </Link>
 
         <p className="dashboard-eyebrow mt-12">Error 404</p>

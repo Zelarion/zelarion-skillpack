@@ -1,4 +1,4 @@
-"""Gold-thread banner art for the Drezivo workspace, rendered twice from one seed: the same
+"""Gold-thread banner art for the Brand workspace, rendered twice from one seed: the same
 composition on night (dark theme) and on paper (light theme). Drawn here, nothing licensed."""
 import math, random, sys
 from PIL import Image, ImageDraw, ImageFilter, ImageChops

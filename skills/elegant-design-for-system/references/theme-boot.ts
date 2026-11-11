@@ -1,7 +1,7 @@
 // Server-safe theme constants. Kept out of theme.ts because that module is "use client", and a
 // server component importing a constant from a client module receives a reference, not the value.
 
-export const THEME_STORAGE_KEY = "drezivo-theme";
+export const THEME_STORAGE_KEY = "app-theme";
 export const DARK_QUERY = "(prefers-color-scheme: dark)";
 
 /**
