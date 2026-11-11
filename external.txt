@@ -1,0 +1,4 @@
+# name|git-url      (cloned to <claude config>/skills/<name>; re-run pulls updates)
+gstack|https://github.com/garrytan/gstack
+teardown|https://github.com/elvarofficial/teardown
+notebooklm|https://github.com/PleasePrompto/notebooklm-skill

@@ -1,0 +1,13 @@
+# marketplace-name|marketplace-source|plugin-name     (installed as plugin@marketplace)
+# Source is a GitHub "owner/repo" or a git URL. These are other people's projects; they are
+# installed from their own repos so updates and licences stay with the authors.
+caveman|https://github.com/juliusbrussee/caveman.git|caveman
+impeccable|https://github.com/pbakaus/impeccable.git|impeccable
+taste-skill|https://github.com/leonxlnx/taste-skill.git|taste-skill
+ui-ux-pro-max-skill|nextlevelbuilder/ui-ux-pro-max-skill|ui-ux-pro-max
+playwright-skill|lackeyjb/playwright-skill|playwright-skill
+dotclaude|https://github.com/poshan0126/dotclaude.git|setupdotclaude
+claude-plugins-official|anthropics/claude-plugins-official|frontend-design
+claude-plugins-official|anthropics/claude-plugins-official|skill-creator
+claude-plugins-official|anthropics/claude-plugins-official|superpowers
+claude-plugins-official|anthropics/claude-plugins-official|firecrawl

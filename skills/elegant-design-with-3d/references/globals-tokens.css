@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens for the Drezivo public surface (marketing site + tenant
+ * storefronts). Per .claude/rules/frontend.md: never hardcode raw color/
+ * spacing values in components — reference these tokens instead. Each tenant
+ * storefront sets its own palette (chosen in the CMS) through the --sf-*
+ * variables below; see src/components/store/theme.ts.
+ */
+@theme {
+  --color-background: #faf7f2;
+  --color-surface: #ffffff;
+  --color-foreground: #1c2521;
+  --color-muted: #6b6156;
+  --color-border: #e7e0d4;
+
+  --color-primary: #1f3d33;
+  --color-primary-foreground: #faf7f2;
+  --color-accent: #a97142;
+  --color-accent-foreground: #faf7f2;
+
+  --color-success: #2f7a4d;
+  --color-success-foreground: #eefaf2;
+  --color-warning: #a9660a;
+  --color-warning-foreground: #fff6e8;
+  --color-danger: #b3311f;
+  --color-danger-foreground: #fdeeec;
+
+  /* Marketing-only palette. Storefronts continue to use the semantic tokens above. */
+  --color-marketing-cream: #f6f0e7;
+  --color-marketing-ivory: #fbf8f2;
+  --color-marketing-panel: #fffdf9;
+  --color-marketing-ink: #34261f;
+  --color-marketing-muted: #76675a;
+  --color-marketing-line: #dfd3c5;
+  --color-marketing-brown: #704b37;
+  --color-marketing-gold: #bd8c53;
+  --color-marketing-gold-strong: #7a5830; /* 5.6:1 on cream; #946833 was 4.3:1 */
+  --color-marketing-success-soft: #e6efe4;
+  --color-marketing-success-ink: #3e6342;
+  --color-marketing-sage: #d7e5dc;
+  --color-marketing-blush: #ead7c7;
+  --color-marketing-dark: #33241d;
+  --color-marketing-dark-line: #5b4437;
+
+  /*
+   * Atelier: the marketing site's warm espresso night and ivory paper, with one champagne voltage.
+   * Measured WCAG contrast: mist on night 8.7:1, muted on paper 5.5:1, gold-ink on paper 5.6:1,
+   * champagne on night 9.8:1. Plain gold on paper is 3.4:1, so it is for display type and ornament only.
+   */
+  --color-atelier-night: #120e0b;
+  --color-atelier-night-2: #1b1511;
+  --color-atelier-night-3: #261d17;
+  --color-atelier-night-line: #3a2e25;
+  --color-atelier-mist: #b9ada0;
+  --color-atelier-paper: #f5efe6;
+  --color-atelier-paper-2: #fbf8f3;
+  --color-atelier-paper-line: #e2d7c8;
+  --color-atelier-ink: #1f1712;
+  --color-atelier-muted: #6b5e53;
+  --color-atelier-champagne: #d4b483;
+  --color-atelier-gold: #a07a46;
+  --color-atelier-gold-ink: #7a5830;
+  /* Page-transition ground: glittering champagne (texture in atelier.css, .at-mosaic). */
+  --color-atelier-champagne-glow: #e2cea9;
+  --color-atelier-champagne-light: #eae3d8;
+
+  /*
+   * Atelier fluid scale: the single source of truth for marketing type and rhythm. Every value
+   * grows linearly from a 320px to a 1440px viewport (display sizes keep shrinking to 280px for
+   * the smallest phones), so nothing needs per-breakpoint font overrides. Use the generated
+   * utilities (text-at-hero, py-at-section, …); never hard-code a marketing font size.
+   * Regenerate with: min@320, max@1440 → clamp(min, intercept + slope·vw, max).
+   */
+  --text-at-micro: clamp(0.6875rem, 0.6696rem + 0.0893vw, 0.75rem);
+  --text-at-micro--line-height: 1.6;
+  --text-at-small: clamp(0.8125rem, 0.7857rem + 0.1339vw, 0.9062rem);
+  --text-at-small--line-height: 1.6;
+  --text-at-body: clamp(0.9375rem, 0.9196rem + 0.0893vw, 1rem);
+  --text-at-body--line-height: 1.75;
+  --text-at-lead: clamp(1rem, 0.9732rem + 0.1339vw, 1.0938rem);
+  --text-at-lead--line-height: 1.7;
+  --text-at-title: clamp(1.25rem, 1.1071rem + 0.7143vw, 1.75rem);
+  --text-at-title--line-height: 1.2;
+  --text-at-title--letter-spacing: -0.005em;
+  --text-at-subhead: clamp(1.5rem, 1.2143rem + 1.4286vw, 2.5rem);
+  --text-at-subhead--line-height: 1.1;
+  --text-at-subhead--letter-spacing: -0.01em;
+  --text-at-display: clamp(2.0402rem, 1.4464rem + 3.3929vw, 4.5rem);
+  --text-at-display--line-height: 1.02;
+  --text-at-display--letter-spacing: -0.02em;
+  --text-at-hero: clamp(2.125rem, 1.25rem + 5vw, 5.75rem);
+  --text-at-hero--line-height: 0.98;
+  --text-at-hero--letter-spacing: -0.02em;
+  --text-at-numeral: clamp(2.5rem, 1.9286rem + 2.8571vw, 4.5rem);
+  --text-at-numeral--line-height: 1;
+  --text-at-price: clamp(4.9911rem, 3.1786rem + 10.3571vw, 12.5rem);
+  --text-at-price--line-height: 0.85;
+  --text-at-price--letter-spacing: -0.03em;
+  /* Root size of the coded app mockups; everything inside them is sized in em off this. */
+  --text-at-mock: clamp(0.8125rem, 0.7589rem + 0.2679vw, 1rem);
+  /* Mockups that are the offer itself (before/after stages, feature bento) read larger. */
+  --text-at-mock-showcase: clamp(0.8125rem, 0.7232rem + 0.4464vw, 1.125rem);
+  --spacing-at-section: clamp(5rem, 3.5714rem + 7.1429vw, 10rem);
+  --spacing-at-stack: clamp(3rem, 2.1429rem + 4.2857vw, 6rem);
+  --spacing-at-gutter: clamp(1.125rem, 0.5893rem + 2.6786vw, 3rem);
+
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #14181a;
+    --color-surface: #1c2226;
+    --color-foreground: #f1ede4;
+    --color-muted: #a39c8e;
+    --color-border: #2b3338;
+  }
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+}
+
+/* Tenant storefront: the palette arrives as --sf-* variables set on .storefront-shell. */
+@theme inline {
+  --color-sf-bg: var(--sf-bg);
+  --color-sf-surface: var(--sf-surface);

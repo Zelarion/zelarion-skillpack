@@ -1,0 +1,770 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f4f7fb;
+  --color-brand-100: #e4ecf7;
+  --color-brand-500: #2f5fac;
+  --color-brand-600: #254c8a;
+  --color-brand-700: #1c3a6b;
+
+  --color-ink-900: #12161f;
+  --color-ink-700: #3a4150;
+  --color-ink-500: #6b7280;
+  --color-ink-300: #d0d5dd;
+  --color-ink-100: #f2f4f7;
+
+  --color-success-500: #1a9e5f;
+  --color-warning-500: #b76e00;
+  --color-danger-500: #c0362c;
+
+  --color-auth-paper: #fdf9f5;
+  --color-auth-ink: #1f1b18;
+  --color-auth-muted: #7d7b7a;
+  --color-auth-border: #dec7ac;
+  --color-auth-gold: #b48a55;
+  --color-auth-gold-dark: #96703f;
+  --color-auth-brown: #876751;
+  --color-auth-night: #171717;
+  --color-auth-panel: #181818;
+  --color-auth-text: #f7f5f2;
+  --color-auth-dark-muted: #b4b0ac;
+  --color-auth-line: #44413f;
+  --color-auth-hover: #292725;
+  --color-auth-button: #f7f5f2;
+  --color-auth-button-hover: #dedbd6;
+  --color-auth-button-ink: #181818;
+  --color-auth-link: #9b8cff;
+  --color-auth-focus: #b1a5ff;
+  --color-auth-error: #ff9f9f;
+
+  /*
+   * Workspace palette: the landing page's atelier system (web/src/app/globals.css, --color-atelier-*).
+   * Light is ivory paper with espresso ink; dark (below) is espresso night with champagne.
+   * Measured WCAG contrast, light: muted on canvas 5.5:1, accent on canvas 5.6:1, accent on active 5.0:1.
+   * Accent is a TEXT colour (links, active nav, rings). Filled controls use primary + primary-ink.
+   */
+  --color-dashboard-champagne: #d4b483;
+  --color-dashboard-canvas: #f5efe6;
+  --color-dashboard-surface: #fffcf7;
+  --color-dashboard-border: #e2d7c8;
+  --color-dashboard-muted: #6b5e53;
+  --color-dashboard-navy: #1f1712;
+  --color-dashboard-active: #ece1cf;
+  --color-dashboard-accent: #7a5830;
+  --color-dashboard-primary: #1f1712;
+  --color-dashboard-primary-hover: #3a2e25;
+  --color-dashboard-primary-ink: #f5efe6;
+  --color-dashboard-danger: #b3311f;
+  --color-dashboard-overlay: #1f1712;
+
+  --color-dashboard-gold-soft: #f1e4cc;
+  --color-dashboard-gold-text: #7a5830;
+  --color-dashboard-calendar-fitting-text: #7a5830;
+  --color-dashboard-green-soft: #e6efe4;
+  --color-dashboard-green-text: #2f6a3f;
+  --color-dashboard-neutral-soft: #efe8dd;
+  --color-dashboard-neutral-text: #5b4f45;
+
+  --color-google-blue: #4285f4;
+  --color-google-green: #34a853;
+  --color-google-yellow: #fbbc05;
+  --color-google-red: #ea4335;
+
+  /* next/font sets --font-jost and --font-bodoni on <html> (src/app/layout.tsx). */
+  --font-sans: var(--font-jost), "Futura", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bodoni), "Bodoni 72", "Didot", Georgia, serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+/*
+ * Workspace size scale: the ONE source of truth for type, control and spacing sizes, stepped per
+ * device class (phone < 640px, tablet 640px+, laptop 1024px+, desktop 1440px+). Components use the
+ * utilities mapped below (text-ws-*, h-ws-control, px-ws-gutter), never their own breakpoints for
+ * these. Phone inputs stay at 16px so iOS Safari does not zoom on focus; touch targets stay 44px.
+ */
+:root {
+  --ws-text-micro: 0.6875rem;
+  --ws-text-small: 0.8125rem;
+  --ws-text-body: 0.9375rem;
+  --ws-text-input: 1rem;
+  --ws-text-section: 1.125rem;
+  --ws-text-kpi: 1.5rem;
+  --ws-text-title: 1.875rem;
+  --ws-text-hero: 2rem;
+  --ws-control: 2.75rem;
+  --ws-gutter: 1rem;
+  --ws-gap: 0.75rem;
+  --ws-radius-card: 1.125rem;
+  --ws-header: 3.75rem;
+  --ws-tabbar: 4.25rem;
+}
+@media (min-width: 640px) {
+  :root {
+    --ws-text-input: 0.9375rem;
+    --ws-text-kpi: 1.625rem;
+    --ws-text-title: 2.125rem;
+    --ws-text-hero: 2.5rem;
+    --ws-control: 2.625rem;
+    --ws-gutter: 1.5rem;
+    --ws-gap: 1rem;
+    --ws-header: 4rem;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --ws-text-body: 0.875rem;
+    --ws-text-input: 0.875rem;
+    --ws-text-kpi: 1.75rem;
+    --ws-text-title: 2.25rem;
+    --ws-text-hero: 2.75rem;
+    --ws-control: 2.5rem;
+    --ws-gutter: 2rem;
+    --ws-radius-card: 1rem;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --ws-text-small: 0.875rem;
+    --ws-text-body: 0.9375rem;
+    --ws-text-section: 1.25rem;
+    --ws-text-kpi: 1.875rem;
+    --ws-text-title: 2.5rem;
+    --ws-text-hero: 3.25rem;
+    --ws-gutter: 2.5rem;
+    --ws-gap: 1.25rem;
+  }
+}
+
+@theme inline {
+  --text-ws-micro: var(--ws-text-micro);
+  --text-ws-small: var(--ws-text-small);
+  --text-ws-body: var(--ws-text-body);
+  --text-ws-input: var(--ws-text-input);
+  --text-ws-section: var(--ws-text-section);
+  --text-ws-kpi: var(--ws-text-kpi);
+  --text-ws-title: var(--ws-text-title);
+  --text-ws-hero: var(--ws-text-hero);
+  --spacing-ws-control: var(--ws-control);
+  --spacing-ws-gutter: var(--ws-gutter);
+  --spacing-ws-gap: var(--ws-gap);
+  --spacing-ws-header: var(--ws-header);
+  --spacing-ws-tabbar: var(--ws-tabbar);
+  --radius-ws-card: var(--ws-radius-card);
+}
+
+/* Dark: the landing page's night ground. Mist on surface 8.2:1, champagne on surface 9.2:1. */
+html[data-dashboard-theme="dark"] {
+  --color-dashboard-canvas: #120e0b;
+  --color-dashboard-surface: #1b1511;
+  --color-dashboard-border: #3a2e25;
+  --color-dashboard-muted: #b9ada0;
+  --color-dashboard-navy: #f5efe6;
+  --color-dashboard-active: #261d17;
+  --color-dashboard-accent: #d4b483;
+  --color-dashboard-primary: #d4b483;
+  --color-dashboard-primary-hover: #e2cea9;
+  --color-dashboard-primary-ink: #120e0b;
+  --color-dashboard-danger: #ff8a7a;
+  --color-dashboard-overlay: #000000;
+  --color-dashboard-gold-soft: #2e2318;
+  --color-dashboard-gold-text: #d4b483;
+  --color-dashboard-calendar-fitting-text: #d4b483;
+  --color-dashboard-green-soft: #18291f;
+  --color-dashboard-green-text: #8fd3a8;
+  --color-dashboard-neutral-soft: #261d17;
+  --color-dashboard-neutral-text: #c9bcae;
+  color-scheme: dark;
+}
+
+/* Filled controls: dark ink on champagne at night, paper on espresso by day (both above 8:1). */
+.dashboard-button-default {
+  background: var(--color-dashboard-primary);
+  color: var(--color-dashboard-primary-ink);
+}
+
+.dashboard-button-default:hover {
+  background: var(--color-dashboard-primary-hover);
+}
+
+.dashboard-button-secondary {
+  background: var(--color-dashboard-surface);
+  color: var(--color-dashboard-navy);
+}
+
+.dashboard-button-secondary:hover {
+  background: var(--color-dashboard-active);
+  color: var(--color-dashboard-navy);
+}
+
+/* Page titles: the landing's Didone display face at the fluid title scale, one style everywhere. */
+.dashboard-page-title {
+  font-family: var(--font-display);
+  font-size: var(--ws-text-title);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-dashboard-navy);
+}
+
+/* Uppercase micro-label with the landing's 0.3em tracking (eyebrows, section labels). */
+.dashboard-eyebrow {
+  font-size: var(--ws-text-micro);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-dashboard-muted);
+}
+
+/* Light status tones: text darkened to at least 5.5:1 on its own tint (WCAG AA for 12px labels). */
+.dashboard-tone-purple {
+  background: #f1edff;
+  color: #5530b8;
+}
+.dashboard-tone-mint {
+  background: #e5f8f1;
+  color: #1f6b50;
+}
+.dashboard-tone-blue {
+  background: #e9f2ff;
+  color: #1f4fa8;
+}
+.dashboard-tone-orange {
+  background: #fff0e4;
+  color: #9a4a0b;
+}
+.dashboard-tone-lavender {
+  background: #f2edff;
+  color: #5530b8;
+}
+
+.dashboard-event-fitting {
+  border-color: transparent;
+  background: #f1edff;
+  color: #5530b8;
+}
+.dashboard-event-pickup {
+  border-color: transparent;
+  background: #e8f2ff;
+  color: #1f4fa8;
+}
+.dashboard-event-return,
+.dashboard-status-upcoming,
+.dashboard-status-pending {
+  border-color: transparent;
+  background: #fff0e4;
+  color: #9a4a0b;
+}
+.dashboard-event-reservation {
+  border-color: transparent;
+  background: #edf1f8;
+  color: #4b5568;
+}
+
+.calendar-activity-pickup {
+  border-color: transparent;
+  background: #e8f2ff;
+  color: #1f4fa8;
+}
+
+.calendar-activity-return {
+  border-color: transparent;
+  background: #f1edff;
+  color: #5530b8;
+}
+
+.calendar-activity-fitting {
+  border-color: transparent;
+  background: var(--color-dashboard-gold-soft);
+  color: var(--color-dashboard-calendar-fitting-text);
+}
+.dashboard-status-confirmed {
+  border-color: transparent;
+  background: #ddf7ed;
+  color: #1f6b50;
+}
+
+.reservation-status-new,
+.reservation-status-picked-up {
+  border-color: transparent;
+  background: #e9f2ff;
+  color: #1f4fa8;
+}
+
+.reservation-status-pending {
+  border-color: transparent;
+  background: #fff0e4;
+  color: #9a4a0b;
+}
+
+.reservation-status-confirmed {
+  border-color: transparent;
+  background: #ddf7ed;
+  color: #1f6b50;
+}
+
+.reservation-status-returned {
+  border-color: transparent;
+  background: #f1edff;
+  color: #5530b8;
+}
+
+.reservation-status-completed,
+.reservation-status-cancelled {
+  border-color: transparent;
+  background: #edf1f8;
+  color: #4b5568;
+}
+
+.reservation-status-danger {
+  border-color: transparent;
+  background: #ffe7e7;
+  color: #b42318;
+}
+
+.clothing-status-available {
+  border-color: #bce9d9;
+  background: #e8f8f2;
+  color: #1f6b50;
+}
+
+.clothing-status-reserved {
+  border-color: #d8c8ff;
+  background: #f2edff;
+  color: #5530b8;
+}
+
+.clothing-status-rented {
+  border-color: #bfd7ff;
+  background: #eaf3ff;
+  color: #1f4fa8;
+}
+
+.clothing-status-cleaning {
+  border-color: #ffd6ad;
+  background: #fff1e2;
+  color: #9a4a0b;
+}
+
+.clothing-status-maintenance {
+  border-color: #ffc7cf;
+  background: #ffecef;
+  color: #a8263c;
+}
+
+.clothing-status-unavailable {
+  border-color: #d5dbe6;
+  background: #f1f3f7;
+  color: #4b5568;
+}
+
+.availability-state-reserved {
+  border-color: #bfd7ff;
+  background: #eaf3ff;
+  color: #1f4fa8;
+}
+
+.availability-state-rented,
+.availability-state-available {
+  border-color: #bce9d9;
+  background: #e8f8f2;
+  color: #1f6b50;
+}
+
+.availability-state-pickup {
+  border-color: #ffd6ad;
+  background: #fff1e2;
+  color: #9a4a0b;
+}
+
+.availability-state-return {
+  border-color: #d8c8ff;
+  background: #f2edff;
+  color: #5530b8;
+}
+
+.availability-state-fitting {
+  border-color: #ffc1da;
+  background: #fff0f6;
+  color: #a32a5e;
+}
+
+.availability-state-unavailable {
+  border-color: #d5dbe6;
+  background: #f1f3f7;
+  color: #4b5568;
+}
+
+html[data-dashboard-theme="dark"] .dashboard-tone-purple,
+html[data-dashboard-theme="dark"] .dashboard-tone-blue,
+html[data-dashboard-theme="dark"] .dashboard-tone-orange,
+html[data-dashboard-theme="dark"] .dashboard-tone-lavender {
+  background: var(--color-dashboard-gold-soft);
+  color: var(--color-dashboard-gold-text);
+}
+
+html[data-dashboard-theme="dark"] .dashboard-tone-mint {
+  background: var(--color-dashboard-green-soft);
+  color: var(--color-dashboard-green-text);
+}
+
+html[data-dashboard-theme="dark"] .dashboard-event-pickup {
+  border-color: rgb(96 165 250 / 0.32);
+  background: rgb(59 130 246 / 0.15);
+  color: #93c5fd;
+}
+
+html[data-dashboard-theme="dark"] .calendar-activity-pickup {
+  border-color: rgb(96 165 250 / 0.32);
+  background: rgb(59 130 246 / 0.15);
+  color: #93c5fd;
+}
+
+html[data-dashboard-theme="dark"] .calendar-activity-return {
+  border-color: rgb(167 139 250 / 0.32);
+  background: rgb(139 92 246 / 0.15);
+  color: #c4b5fd;
+}
+
+html[data-dashboard-theme="dark"] .calendar-activity-fitting {
+  border-color: rgb(226 173 97 / 0.32);
+  background: var(--color-dashboard-gold-soft);
+  color: var(--color-dashboard-calendar-fitting-text);
+}
+
+html[data-dashboard-theme="dark"] .dashboard-event-return {
+  border-color: rgb(251 146 60 / 0.32);
+  background: rgb(249 115 22 / 0.14);
+  color: #fdba74;
+}
+
+html[data-dashboard-theme="dark"] .dashboard-event-fitting {
+  border-color: rgb(167 139 250 / 0.32);
+  background: rgb(139 92 246 / 0.15);
+  color: #c4b5fd;
+}
+
+html[data-dashboard-theme="dark"] .dashboard-event-reservation {
+  border-color: rgb(148 163 184 / 0.28);
+  background: rgb(100 116 139 / 0.14);
+  color: #cbd5e1;
+}
+
+html[data-dashboard-theme="dark"] .dashboard-status-upcoming,
+html[data-dashboard-theme="dark"] .dashboard-status-pending {
+  border-color: transparent;
+  background: var(--color-dashboard-gold-soft);
+  color: var(--color-dashboard-gold-text);
+}
+
+html[data-dashboard-theme="dark"] .dashboard-status-confirmed {
+  border-color: transparent;
+  background: var(--color-dashboard-green-soft);
+  color: var(--color-dashboard-green-text);
+}
+
+html[data-dashboard-theme="dark"] .reservation-status-new,
+html[data-dashboard-theme="dark"] .reservation-status-pending,
+html[data-dashboard-theme="dark"] .reservation-status-picked-up,
+html[data-dashboard-theme="dark"] .reservation-status-returned {
+  border-color: transparent;
+  background: var(--color-dashboard-gold-soft);
+  color: var(--color-dashboard-gold-text);
+}
+
+html[data-dashboard-theme="dark"] .reservation-status-confirmed {
+  border-color: transparent;
+  background: var(--color-dashboard-green-soft);
+  color: var(--color-dashboard-green-text);
+}
+
+html[data-dashboard-theme="dark"] .reservation-status-completed,
+html[data-dashboard-theme="dark"] .reservation-status-cancelled {
+  border-color: transparent;
+  background: var(--color-dashboard-neutral-soft);
+  color: var(--color-dashboard-neutral-text);
+}
+
+html[data-dashboard-theme="dark"] .reservation-status-danger {
+  border-color: transparent;
+  background: rgb(255 77 109 / 0.12);
+  color: var(--color-dashboard-danger);
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-available {
+  border-color: rgb(52 211 153 / 0.3);
+  background: rgb(16 185 129 / 0.14);
+  color: #6ee7b7;
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-reserved {
+  border-color: rgb(167 139 250 / 0.35);
+  background: rgb(139 92 246 / 0.16);
+  color: #c4b5fd;
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-rented {
+  border-color: rgb(96 165 250 / 0.35);
+  background: rgb(59 130 246 / 0.16);
+  color: #93c5fd;
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-cleaning {
+  border-color: rgb(251 146 60 / 0.35);
+  background: rgb(249 115 22 / 0.15);
+  color: #fdba74;
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-maintenance {
+  border-color: rgb(251 113 133 / 0.35);
+  background: rgb(244 63 94 / 0.14);
+  color: #fda4af;
+}
+
+html[data-dashboard-theme="dark"] .clothing-status-unavailable {
+  border-color: var(--color-dashboard-border);
+  background: var(--color-dashboard-neutral-soft);
+  color: var(--color-dashboard-neutral-text);
+}
+
+html[data-dashboard-theme="dark"] .availability-state-reserved {
+  border-color: rgb(96 165 250 / 0.35);
+  background: rgb(59 130 246 / 0.16);
+  color: #93c5fd;
+}
+
+html[data-dashboard-theme="dark"] .availability-state-rented,
+html[data-dashboard-theme="dark"] .availability-state-available {
+  border-color: rgb(52 211 153 / 0.3);
+  background: rgb(16 185 129 / 0.14);
+  color: #6ee7b7;
+}
+
+html[data-dashboard-theme="dark"] .availability-state-pickup {
+  border-color: rgb(251 146 60 / 0.35);
+  background: rgb(249 115 22 / 0.15);
+  color: #fdba74;
+}
+
+html[data-dashboard-theme="dark"] .availability-state-return {
+  border-color: rgb(167 139 250 / 0.35);
+  background: rgb(139 92 246 / 0.16);
+  color: #c4b5fd;
+}
+
+html[data-dashboard-theme="dark"] .availability-state-fitting {
+  border-color: rgb(244 114 182 / 0.35);
+  background: rgb(236 72 153 / 0.15);
+  color: #f9a8d4;
+}
+
+html[data-dashboard-theme="dark"] .availability-state-unavailable {
+  border-color: var(--color-dashboard-border);
+  background: var(--color-dashboard-neutral-soft);
+  color: var(--color-dashboard-neutral-text);
+}
+
+.dashboard-sheet-overlay[data-state="open"] {
+  animation: dashboard-sheet-overlay-in 180ms ease-out both;
+}
+
+.dashboard-sheet-overlay[data-state="closed"] {
+  animation: dashboard-sheet-overlay-out 160ms ease-in both;
+}
+
+.dashboard-sheet-content[data-state="open"] {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.dashboard-sheet-content[data-state="closed"] {
+  animation-duration: 200ms;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+  animation-fill-mode: both;
+}
+
+.dashboard-sheet-content[data-side="right"][data-state="open"] {
+  animation-name: dashboard-sheet-in-right;
+}
+
+.dashboard-sheet-content[data-side="right"][data-state="closed"] {
+  animation-name: dashboard-sheet-out-right;
+}
+
+.dashboard-sheet-content[data-side="left"][data-state="open"] {
+  animation-name: dashboard-sheet-in-left;
+}
+
+.dashboard-sheet-content[data-side="left"][data-state="closed"] {
+  animation-name: dashboard-sheet-out-left;
+}
+
+.dashboard-sheet-content[data-side="top"][data-state="open"] {
+  animation-name: dashboard-sheet-in-top;
+}
+
+.dashboard-sheet-content[data-side="top"][data-state="closed"] {
+  animation-name: dashboard-sheet-out-top;
+}
+
+.dashboard-sheet-content[data-side="bottom"][data-state="open"] {
+  animation-name: dashboard-sheet-in-bottom;
+}
+
+.dashboard-sheet-content[data-side="bottom"][data-state="closed"] {
+  animation-name: dashboard-sheet-out-bottom;
+}
+
+@keyframes dashboard-sheet-overlay-in {
+  from { opacity: 0; backdrop-filter: blur(0); }
+  to { opacity: 1; }
+}
+
+@keyframes dashboard-sheet-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; backdrop-filter: blur(0); }
+}
+
+@keyframes dashboard-sheet-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes dashboard-sheet-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes dashboard-sheet-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes dashboard-sheet-out-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes dashboard-sheet-in-top {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes dashboard-sheet-out-top {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes dashboard-sheet-in-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes dashboard-sheet-out-bottom {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-sheet-overlay,
+  .dashboard-sheet-content {
+    animation-duration: 1ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-dashboard-canvas);
+  color: var(--color-dashboard-navy);
+  font-family: var(--font-sans);
+  font-size: var(--ws-text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-dashboard-champagne) 45%, transparent);
+  color: var(--color-dashboard-navy);
+}
+
+/* Thin gold scrollbars, as on the landing page. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-dashboard-accent) 55%, transparent) transparent;
+}
+
+* {
+  border-color: var(--color-dashboard-border);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-dashboard-accent);
+  outline-offset: 2px;
+}
+
+.auth-layout {
+  position: relative;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--color-auth-night);
+  color-scheme: dark;
+}
+
+.auth-panel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: var(--color-auth-panel);
+}
+
+.auth-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .auth-panel {
+    width: 55%;
+    clip-path: polygon(0 0, 100% 0, 91% 100%, 0 100%);
+  }
+
+  .auth-image {
+    left: 42%;
+    display: block;
+  }
+}
+
+/* Themed art: the same picture drawn for each theme; only the matching one is shown. */
+html[data-dashboard-theme="dark"] .ws-art-light,
+html:not([data-dashboard-theme="dark"]) .ws-art-dark {
+  display: none;
+}
+
+/* Page hero entrance: content rises 16px, the gold rule draws in. Skipped under reduced motion. */
+@keyframes ws-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ws-rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ws-rise {
+  animation: ws-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--ws-i, 0) * 80ms);
+}
+.ws-rule {
+  transform-origin: left;
+  animation: ws-rule 1100ms cubic-bezier(0.77, 0, 0.175, 1) 300ms both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws-rise,
+  .ws-rule {
+    animation: none;
+  }
+}

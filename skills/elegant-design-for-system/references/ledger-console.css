@@ -1,0 +1,269 @@
+/* Excerpt from 241675BautistaCarLoanSystem Content/Site.css (size scale, page + sections, figures, ledger, status/facts, well). Reference for SKILL.md section 12. Its .tabs overflow-x pattern is deliberately omitted: phones never scroll sideways. */
+
+/* ---------- 2. One size scale per device class ---------- */
+
+/* Phone (<640). Inputs stay 16px so iOS Safari never zooms; touch controls are 44px. */
+:root {
+    --t-micro: 0.6875rem;
+    --t-small: 0.8125rem;
+    --t-body: 0.9375rem;
+    --t-input: 1rem;
+    --t-section: 1.25rem;
+    --t-kpi: 1.5rem;
+    --t-title: 1.875rem;
+    --control: 2.75rem;
+    --gutter: 1rem;
+    --gap: 0.75rem;
+    --space: 1.25rem;
+    --section-gap: 2.25rem;
+    --header: 3.5rem;
+    --tabbar: 4rem;
+    --fig-pad: 1rem;
+}
+
+/* Tablet (640+) */
+@media (min-width: 640px) {
+    :root {
+        --t-input: 0.9375rem;
+        --t-kpi: 1.625rem;
+        --t-title: 2.125rem;
+        --control: 2.625rem;
+        --gutter: 1.5rem;
+        --gap: 1rem;
+        --space: 1.5rem;
+        --section-gap: 2.75rem;
+        --header: 4rem;
+        --fig-pad: 1.25rem;
+    }
+}
+
+/* Laptop (1024+) */
+@media (min-width: 1024px) {
+    :root {
+        --t-body: 0.875rem;
+        --t-input: 0.875rem;
+        --t-kpi: 1.75rem;
+        --t-title: 2.25rem;
+        --control: 2.5rem;
+        --gutter: 2rem;
+        --fig-pad: 1.5rem;
+    }
+}
+
+/* Desktop (1440+) */
+@media (min-width: 1440px) {
+    :root {
+        --t-small: 0.875rem;
+        --t-body: 0.9375rem;
+        --t-section: 1.375rem;
+        --t-kpi: 1.875rem;
+        --t-title: 2.5rem;
+        --gutter: 2.5rem;
+        --gap: 1.25rem;
+
+/* Page header: eyebrow, Didone title, a lead line, and a double rule like the foot of a ledger column. */
+.page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--gap) 24px;
+    padding-bottom: 1.25rem;
+    border-bottom: 3px double var(--rule);
+}
+.page-head > div:first-child { min-width: 0; }
+.page-title {
+    margin-top: 2px;
+    font-family: var(--font-display);
+    font-size: var(--t-title);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+}
+.lead { margin-top: 8px; max-width: 62ch; color: var(--muted); }
+.page-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* Section: a top hairline, a Didone heading, room to breathe. No background. */
+.section { padding-top: 1.25rem; border-top: 1px solid var(--border); }
+* + .section { margin-top: var(--section-gap); }
+.page > .page-head + .section { margin-top: calc(var(--space) * 1.25); }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin-bottom: 1rem; }
+.section-title { font-family: var(--font-display); font-size: var(--t-section); font-weight: 500; line-height: 1.2; letter-spacing: -0.005em; color: var(--ink); }
+.section-meta { color: var(--muted); font-size: var(--t-small); }
+.section-meta a { color: var(--accent); text-underline-offset: 3px; }
+.section-meta a:hover { text-decoration: underline; }
+
+.layout-main-aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--section-gap) 0; align-items: start; }
+.layout-main-aside > .main, .layout-main-aside > .aside { min-width: 0; }
+@media (min-width: 1200px) {
+    .layout-main-aside { grid-template-columns: minmax(0, 1fr) 21.25rem; gap: 0 3rem; }
+}
+.columns-2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--section-gap) 0; align-items: start; }
+.columns-2 > * { min-width: 0; }
+.columns-2 > .section { margin-top: 0; }
+@media (min-width: 1024px) { .columns-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3.5rem; } }
+
+/* ---------- 7. Figures strip ---------- */
+
+/* Vertical hairlines come from each figure's own shadow; the clipped container hides the ones on the outer
+   edges, so the same markup draws a grid when it wraps. Negative margin keeps the text on the page edge. */
+.figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    margin-inline: calc(var(--fig-pad) * -1);
+    overflow: hidden;
+}
+.figure {
+    container-type: inline-size;
+    display: block;
+    min-width: 0;
+    padding: 1rem var(--fig-pad) 1.1rem;
+    box-shadow: -1px 0 0 var(--border), 0 -1px 0 var(--border);
+    color: inherit;
+}
+.figure dt, .figure-label { display: block; color: var(--muted); font-size: var(--t-micro); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+.figure dd, .figure-value {
+    display: block;
+    margin-top: 6px;
+    font-size: min(var(--t-kpi), 12.5cqi);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: var(--ink);
+}
+.figure-note { display: block; margin-top: 4px; color: var(--muted); font-size: var(--t-small); }
+.figure-note.is-up { color: var(--ok); }
+.figure-note.is-down, .figure-note.is-alert { color: var(--danger); }
+.figure-note.is-alert { font-weight: 500; }
+a.figure { transition: background-color 150ms var(--ease-ui); }
+a.figure:hover { background: var(--hover); }
+a.figure:hover .figure-value { color: var(--accent); }
+a.figure:focus-visible { outline-offset: -3px; }
+.figure-value { transition: color 150ms var(--ease-ui); }
+
+@media (max-width: 639px) {
+    .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- 8. Ledger tables ---------- */
+
+/* Negative margin lets row hover tint bleed into the gutter while text stays on the page edge. */
+.ledger-wrap {
+    --cell-x: 0.75rem;
+    margin-inline: calc(var(--cell-x) * -1);
+    overflow: auto;
+    max-height: min(72vh, 46rem);
+    -webkit-overflow-scrolling: touch;
+}
+.ledger-wrap:focus-visible { outline-offset: -2px; }
+
+.ledger { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--t-body); }
+.ledger th, .ledger td { padding: 0.8rem var(--cell-x); text-align: left; vertical-align: middle; border-bottom: 1px solid var(--border); }
+.ledger th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    background: var(--canvas);
+    border-bottom-color: var(--rule);
+    color: var(--muted);
+    font-size: var(--t-micro);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.ledger th a { color: inherit; }
+.ledger th.num, .ledger td.num { text-align: right; }
+.ledger td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ledger tbody tr:last-child td { border-bottom-color: var(--rule); }
+.ledger td:first-child:has(.ledger-title) { min-width: 10rem; }
+.ledger td:first-child { white-space: normal; }
+@media (min-width: 640px) { .ledger td { white-space: nowrap; } .ledger td:first-child, .ledger td.wrap { white-space: normal; } }
+
+.ledger tbody tr { transition: background-color 120ms var(--ease-ui); }
+.ledger tbody tr:hover > td { background: var(--hover); }
+.ledger-title { color: var(--ink); font-weight: 500; transition: color 150ms var(--ease-ui); }
+.ledger-title:hover, .row-link:hover .ledger-title { color: var(--accent); }
+.ledger-sub { display: block; margin-top: 1px; color: var(--muted); font-size: var(--t-small); font-weight: 400; }
+.row-link { cursor: pointer; }
+.ledger td.actions { text-align: right; white-space: nowrap; }
+.ledger td.actions > * + * { margin-left: 4px; }
+
+/* Totals row: a double rule above, heavier type. */
+.ledger tfoot td, .ledger tfoot th {
+    position: static;
+    border-top: 3px double var(--rule);
+    border-bottom: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: var(--t-body);
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.ledger tfoot + tbody tr:last-child td { border-bottom-color: var(--border); }
+
+/* Row states */
+.ledger tr.is-overdue > td:first-child { box-shadow: inset 2px 0 0 var(--danger); }
+.ledger tr.is-next > td { background: var(--active); }
+.ledger tr.is-next > td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
+.ledger tr.is-paid > td, .ledger tr.is-muted > td { color: var(--muted); }
+.ledger tr.is-paid .ledger-title, .ledger tr.is-muted .ledger-title { color: var(--muted); font-weight: 400; }
+
+/* Phones: rows become stacked list items separated by hairlines (not cards), using each cell's data-label. */
+@media (max-width: 639px) {
+    .ledger-wrap { margin-inline: 0; max-height: none; overflow: visible; }
+    .ledger thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .ledger, .ledger tbody, .ledger tfoot, .ledger tr, .ledger td { display: block; }
+    .ledger tr { padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+    .ledger tbody tr:last-child { border-bottom-color: var(--rule); }
+    .ledger th, .ledger td { border: 0; }
+    .ledger tbody tr:hover > td { background: transparent; }
+    .ledger td {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 2px 10px;
+        padding: 3px 0;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+    .ledger .hide-phone { display: none; }
+    .ledger td[data-label]::before { content: attr(data-label); flex: none; margin-right: auto; color: var(--muted); font-size: var(--t-small); text-align: left; }
+    .ledger td:first-child { display: block; min-width: 0; padding-bottom: 6px; text-align: left; font-size: 1.0625rem; }
+    .ledger td.actions { justify-content: flex-end; padding-top: 10px; }
+    .ledger td.actions::before { display: none; }
+    .ledger tfoot tr { border-top: 3px double var(--rule); border-bottom: 0; }
+    .ledger tfoot td { border: 0; }
+    .ledger tr.is-overdue, .ledger tr.is-next { padding-left: 12px; box-shadow: inset 2px 0 0 var(--danger); }
+    .ledger tr.is-next { box-shadow: inset 2px 0 0 var(--accent); background: var(--active); }
+    .ledger tr.is-overdue > td:first-child, .ledger tr.is-next > td:first-child { box-shadow: none; }
+    .ledger tr.is-next > td { background: transparent; }
+}
+
+/* ---------- 9. Status, facts, meter, tabs, well, steps, timeline, empty, alerts ---------- */
+
+.status { --dot: var(--muted); display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: var(--t-small); font-weight: 500; line-height: 1.3; white-space: nowrap; }
+.status { --dot: var(--muted); display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: var(--t-small); font-weight: 500; line-height: 1.3; white-space: nowrap; }
+.status::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dot); }
+.status-active, .status-next, .status-financed { --dot: var(--accent); }
+.status-paid, .status-available, .status-ok { --dot: var(--ok); }
+.status-overdue, .status-error { --dot: var(--danger); color: var(--danger); }
+.status-warn { --dot: var(--gold); }
+.status-pending { --dot: transparent; color: var(--muted); }
+.status-pending::before { box-shadow: inset 0 0 0 1.5px var(--muted); }
+
+.facts { display: block; }
+.facts > div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+.facts > div:last-child { border-bottom: 0; }
+.facts dt { color: var(--muted); font-size: var(--t-small); }
+.facts dd { min-width: 0; color: var(--ink); font-weight: 500; text-align: right; overflow-wrap: anywhere; }
+
+/* The one primary task area on a page. */
+.well { padding: var(--space); border-radius: 12px; background: var(--well); }
+.well .input { background-color: var(--surface); }
